@@ -34,7 +34,12 @@ class AuthorRegiterForm(forms.ModelForm):
         password = cleaned_data.get("password")
         confirm_password = cleaned_data.get("confirm_password")
         username = cleaned_data.get("username")
-
+        
+        if ' ' in str(username):
+            raise forms.ValidationError(
+                "WhiteSpaces are not allowed in username."
+            )
+        
         if Author.objects.filter(username=username).exists():
             raise forms.ValidationError(
                 "Username already exists."
