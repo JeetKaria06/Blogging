@@ -14,4 +14,4 @@ A place for authors to store, edit and delete articles.
 * Bootstrap
 * Django-ckeditor (for rich text support)
 
-> Deployed [here](http://authorblogging.herokuapp.com/) on heroku for the crazy ones to explore. :smirk:
+> Deployed [here](https://authorblogging.herokuapp.com/) on heroku for the crazy ones to explore. :smirk:
