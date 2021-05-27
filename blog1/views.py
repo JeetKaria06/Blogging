@@ -90,7 +90,7 @@ def viewArticle(request, username, slugtitle):
     if request.session['user']==username and request.session['is_logged_in']:
         if Author.objects.get(username=username).articles.filter(slugtitle=slugtitle).exists():
             a = Author.objects.get(username=username).articles.get(slugtitle=slugtitle)
-            return render(request, 'viewArticle.html', {'article':a, 'user':username})
+            return render(request, 'viewArticle.html', {'data':username, 'article':a, 'user':username})
         return redirect('/dashboard/'+username)
     return redirect('/')
 
