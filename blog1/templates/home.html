@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block message %}
+    {% if problem.done %}
+    <div class="alert alert-success">
+        <center>You are registered!</center>
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <center>
+    <h3>
+    <form action="/login/" method="POST" class="form-group">
+        {% csrf_token %}
+        {{ form.as_p }} 
+        <input type="submit" value="Login" class="btn btn-primary" style="height:40px; width:150px; font-size: 22px;">
+    </form>
+    <form action="/register/" method="GET">
+        {% csrf_token %}
+        <input type="submit" value="Register" class="btn btn-outline-secondary" style="height:40px; width:150px; font-size: 20px;">
+    </form>
+    </h3>
+</center>
+{% endblock %}

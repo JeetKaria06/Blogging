@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block button %}
+{% csrf_token %}
+<form action="/logout/" method="POST">
+    <input type="submit" value="Logout" class="btn btn-secondary" style="height:40px; width:150px; font-size: 20px;">
+</form>
+</br>
+<form action="/dashboard/{{data}}" method="GET">
+    <input type="submit" value="Dashboard" class="btn btn-primary" style="height:40px; width:150px; font-size: 20px;">
+</form>
+{% endblock %}
+
+{% block content %}
+    <h3>
+    {% if exists == 1 %}
+        <div class="alert alert-danger">
+            <center>Article with this name already exists!</center>
+        </div>
+    {% endif %}
+    <center>
+        {% load static %}
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+        <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+        <form action="/dashboard/{{ data }}/add" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            </br> </br>
+            <input type="submit" value="Save" class="btn btn-primary" style="height:40px; width:150px; font-size: 20px;">
+        </form>
+    </center>
+    </h3>
+{% endblock %}

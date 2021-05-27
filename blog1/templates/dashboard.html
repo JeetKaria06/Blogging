@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block button %}
+<form action="/logout/" method="POST">
+    <input type="submit" value="Logout" class="btn btn-secondary" style="height:40px; width:150px; font-size: 20px;">
+</form>
+</br>
+<form action="/dashboard/{{ data }}/add" method="GET">
+    <input type="submit" value="Add" class="btn btn-primary" style="height:40px; width:150px; font-size: 20px;">
+</form>
+{% endblock %}
+
+{% block content %}
+    <h3>
+    {% if saved == 1 %}
+            <div class="alert alert-success">
+                <center>Article Saved!</center>
+            </div>
+    {% endif %}
+    {% if deleted == 1 %}
+            <div class="alert alert-danger">
+                <center>Article Deleted!</center>
+            </div>
+    {% endif %}
+    {% if edited == 1 %}
+            <div class="alert alert-success">
+                <center>Article Edited!</center>
+            </div>
+    {% endif %}
+    </h3>
+<center>
+    <h2><strong>{{ data }}'s Articles</strong></h2>
+    </br>
+    {% for article in articles %}
+        <div class="card">
+            <div class="card-body">
+            <u><h1 class="card-title"><a href="/dashboard/{{ data }}/{{ article.slugtitle }}" class="card-link">{{ article.title|safe }}</a></h1></u>
+            <p class="card-text">{{ article.content|safe }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</center>
+{% endblock %}
